@@ -1,10 +1,12 @@
 name: Security Scan
 
 on:
+  pull_request:
   push:
+    branches:
+      - main
 
 jobs:
-  snyk-scan:
-    uses: CD20012001/snyk-security-workflows/.github/workflows/snyk-sca.yml@main
-    secrets:
-      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  snyk:
+    uses: CD20010201/snyk-security-workflows/.github/workflows/snyk-sca.yml@main
+    secrets: inherit
