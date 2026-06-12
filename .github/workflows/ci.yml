@@ -1,0 +1,14 @@
+name: CI — Node.js
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  security:
+    uses: CD20012001/snyk-security-workflows/.github/workflows/snyk-sast-reusable.yml
+    with:
+      install-command: npm install
+    secrets:
+      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
