@@ -1,7 +1,11 @@
-# .github/workflows/ci-node.yml
-# Node.js team – calls the shared Snyk SAST reusable workflow
+# .github/workflows/ci-snyk.yml
+# ─────────────────────────────────────────────────────────────────────────────
+# Universal caller workflow – works for ANY language team
+# Just drop this file into your repo under .github/workflows/
+# No changes needed regardless of language (Node, Python, Java, Go, Ruby...)
+# ─────────────────────────────────────────────────────────────────────────────
 
-name: CI – Node.js
+name: CI – Snyk Security Scan
 
 on:
   push:
@@ -10,24 +14,10 @@ on:
     branches: [main, develop]
 
 jobs:
-  # Your existing build / test jobs go here
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-      - run: npm install
-      - run: npm test
-
-  # ── Snyk SAST – reusable call ──────────────────────────────────────────────
   security-scan:
     name: Security – Snyk SAST
-    needs: build                      # run after build succeeds
-    uses: CD20012001/snyk-security-workflows/.github/workflows/snyk-sast-reusable.yml@main
+    uses: YOUR_ORG/YOUR_CENTRAL_REPO/.github/workflows/snyk-sast-reusable.yml@main
     with:
-      language: "node"
       severity-filter: "critical,high"
       fail-on-exploit: true
     secrets:
