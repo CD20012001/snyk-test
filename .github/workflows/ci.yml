@@ -7,7 +7,7 @@ on:
 
 jobs:
   security:
-    uses: CD20012001/snyk-security-workflows/.github/workflows/snyk-sast-reusable.yml
+    uses: CD20012001/snyk-security-workflows/.github/workflows/snyk-sast-reusable.yml@main
     with:
       install-command: npm install
     secrets:
