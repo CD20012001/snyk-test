@@ -7,8 +7,9 @@ on:
 
 jobs:
   security:
-    uses: CD20012001/snyk-security-workflows/.github/workflows/snyk-sast-reusable.yml@main
+    uses: CD20012001/snyk-security-workflows.github/workflows/snyk-filter.yml@main
     with:
       install-command: npm install
+      filter-file: .snyk-filter/high-poc.yml
     secrets:
       SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
